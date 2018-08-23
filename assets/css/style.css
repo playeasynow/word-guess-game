@@ -1,3 +1,14 @@
 body {
-    background-color: indianred;
+    background-color: midnightblue;
+}
+
+.center {
+    margin-top: 15%;
+    margin-bottom: auto;
+}
+
+.bold {
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Lobster';
 }
