@@ -9,6 +9,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Lobster|Monoton|Oleo+Script|Sedgwick+Ave+Display|Wallpoet" rel="stylesheet">
+    <script type="text/javascript" src="./assets/javascript/game.js"></script>
     <title>Guess Hue?</title>
 </head>
 
@@ -59,7 +60,7 @@
             - way to keep track of letters guessed -->
 
     <div class="jumbotron jumbotron-fluid center pt-4">
-        <div class="container pb-5 mb-5">
+        <div class="container pb-4">
             <div class="row">
                 <div class="col-8">
                     <h1 class="display-4 bold">Guess Hue?</h1>
@@ -67,14 +68,13 @@
                 </div>
             </div>
 
-            <div class="row mt-4">
+            <div class="row mt-3">
                 <div class="col-2">
                     <form class="form">
-                        <div class="form-group mr-2 mt-2">
-                            <label for="inputText" class="sr-only">Password</label>
+                        <div class="form-group mr-2">
                             <input type="text" maxlength="1" minlength="1" name="letter" class="form-control" id="inputText" placeholder="enter a letter">
 
-                            <button type="submit" class="btn btn-primary mt-2">Guess!</button>
+                            <button type="submit" class="btn btn-primary mt-2" id="guessBtn">Guess!</button>
                         </div>
                     </form>
                 </div>
@@ -83,9 +83,9 @@
 
                 <div class="col-4">
                     B  <br> ____ ____ ____ ____
-                    <div class="progress mt-5">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <p id="currentWord"></p>
+                    <p id="wins-text"></p>
+                    <p id="losses-text"></p>
                 </div>
             </div>
 
@@ -95,7 +95,6 @@
 
 
 
-    <script src="./assets/javascript/game.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
