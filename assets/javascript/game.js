@@ -53,7 +53,7 @@ var remainingLetters = color.length;
 
 // the game loop
 while (remainingLetters > 0) {
-    // shows the player's progress aka joins the guess and the underscores
+    // shows the player's progress aka joins the guess and the underscores / displays letters
     alert(answerArray.join(" "));
 }
 
