@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-8">
                     <h1 class="display-4 bold">Guess Hue?</h1>
-                    <p class="lead">There's 140 HTML / CSS named colors. Get ready to guess as many as you can!</p>
+                    <p class="lead" id="directions-text">There's 140 HTML / CSS named colors. Get ready to guess as many as you can!</p>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
                     <form class="form">
                         <div class="form-group mr-2 mt-2">
                             <label for="inputText" class="sr-only">Password</label>
-                            <input type="text" class="form-control" id="inputText" placeholder="enter letter">
+                            <input type="text" maxlength="1" minlength="1" name="letter" class="form-control" id="inputText" placeholder="enter a letter">
 
                             <button type="submit" class="btn btn-primary mt-2">Guess!</button>
                         </div>
