@@ -14,75 +14,42 @@
 </head>
 
 <body>
-
-    <!-- HW INSTRUCTIONS -->
-    <!-- Use key events to listen for the letters that your players will type.
-    Display the following on the page:
-    1. Press any key to get started!
-    2. Wins: (# of times user guessed the word correctly).
-    3. If the word is madonna, display it like this when the game starts: _ _ _ _ _ _ _.
-    4. As the user guesses the correct letters, reveal them: m a d o _ _ a.   
-    5. Number of Guesses Remaining: (# of guesses remaining for the user).
-    6. Letters Already Guessed: (Letters the user has guessed, displayed like L Z Y H).
-    7. After the user wins/loses the game should automatically choose another word and make the user play it. -->
-
-    <!-- GUESS HUE? psuedo code -->
-    <!-- Objective of the game: guess the name of a hue i.e. color, before you run out of guesses (10). There are 140 HTML / CSS named colors. How many do hue know? -->
-
-    <!-- Parameters in my own words: -->
-    <!-- enter letter by letter until you reveal an HTML / CSS color name. 
-        1) DISPLAY # OF WINS: # of times user guessed a color name correctly.
-        2) DISPLAY # OF LETTERS: show underscores/spaces for each letter in given color name.
-        3) DISPLAY RIGHT LETTERS: as user guesses the right letters of the color name, show them on the empty spaces.
-        4) DISPLAY # OF GUESSES REMAINING: the user has 10 [full-word or letter] guesess so show how many guesses remain.
-        5) DISPLAY LETTERS ALREADY GUESSED: keep track of what letters the user guessed incorrectly. 
-        6) RESET GAME IF WON/LOST: the game should automatically ask the user to guess another word after winning or losing.  -->
-
-    <!-- what needs to be coded 
-        HTML Layout / CSS
-            - spaces where letters/words appear
-            - form to enter letters
-            - spaces where incorrect letters appear
-            - color of the background (advanced: make little 22 degree halo suns in the guessed color appear and float around the screen)
-            - font for letters
-            - sound for winning
-            - sound for losing
-            - sound for guessing wrong
-            - sound for guessing right
-            - box for score: wins/losses, guesses remaining, letters already guessed
-        JavaScript
-            - array of words (yes, all 140 HTML colors)
-            - way to play colors in random sequence (as in, the game will ask you to guess a color in a random sequence from the 140)
-            - way to cross check guessed letters against HTML color
-            - way to tell you if it belongs in that HTML color
-            - way to tell you it does not belong in that HTML color
-            - way to count wins/losses
-            - way to keep track of letters guessed -->
-
+    <!-- bootstrap jumbotron -->
     <div class="jumbotron jumbotron-fluid center pt-4">
         <div class="container pb-4">
             <div class="row">
                 <div class="col-8">
+                    <!-- main title / Guess Hue? -->
                     <h1 class="display-4 bold">Guess Hue?</h1>
-                    <p class="lead" id="directions-text">There's 140 HTML / CSS named colors. Get ready to guess as many as you can!</p>
+                    <p class="lead" id="directions-text">It's hangman, and the category is, ALL 140 HTML / CSS named colors.
+                        Go!
+                    </p>
+                </div>
+
+                <div class="col-4">
+                    <!-- game dashboard -->
+                    <h2 class="display-6 bold">SCORE</h2>
+                    <p id=""></p>
                 </div>
             </div>
 
             <div class="row mt-3">
-                <div class="col-2">
-                    <form class="form">
+                <div class="col-4">
+                    <!-- bootstrap form // where user enters letters-->
+                    <form class="form-inline">
                         <div class="form-group mr-2">
                             <input type="text" maxlength="1" minlength="1" name="letter" class="form-control" id="inputText" placeholder="enter a letter">
 
-                            <button type="submit" class="btn btn-primary mt-2" id="guessBtn">Guess!</button>
+                            <button type="submit" class="btn btn-primary ml-2" id="guessBtn">Guess!</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                 </div>
 
                 <div class="col-4">
-                    B  <br> ____ ____ ____ ____
+                    <!-- where the words / incorrect letters should appear -->
+                    B <br> ____ ____ ____ ____
                     <p id="currentWord"></p>
                     <p id="wins-text"></p>
                     <p id="losses-text"></p>
@@ -91,9 +58,6 @@
 
         </div>
     </div>
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

@@ -1,23 +1,3 @@
-
-
-//  Computer picks a random color
-//  *While* the color has not been guessed {
-//      *Show* the player their current progress
-//      *Get* a guess (a letter) from the player
-//  If the player wants to quit the game {
-//      *Quit* the game
-//  }
-//  Else If the guess is not a single letter {
-//      *Tell* the player to pick a single letter
-//  }
-//  Else {
-//      *If* the guess is in the allColors array {
-//      *Update* the player's progress with the guess
-//          }
-//      }
-// }
-// Congratulate the player on guessing the color
-
 // fun little welcome message
 // var name = prompt("Hi, colorful. What's your name?");
 // alert("Hello " + name);
@@ -41,20 +21,21 @@ var allColors = [
     "silver", "darkgray", "gray", "dimgray", "lightslategray", "slategray", "darkslategray", "black"
 ];
 
-var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var alphabet = alphabetArray();
+// var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+// var alphabet = alphabetArray();
 
-// variables to hold the number of wins, losses and remaining letters.
+// variables
 var wins = 0;
 var losses = 0;
-
-// Create variables that hold references to the places in the HTML where we want to display things.
 var inputText = document.getElementById("inputText"); // letters the user enters
 var winsText = document.getElementById("wins-text"); // the number of times a user answers a whole color correctly
 var lossesText = document.getElementById("losses-text"); // number of times the user has lost, ran out of guesses
 var guessesRemaining = document.getElementById("guesses-remaining"); // number of single-letter guesses remaining, always 10
 var lettersGuessed = document.getElementById("letters-guessed"); // listing of letters user entered but not part of word, already used
 var currentWord = document.getElementById("current-word");
+
+// is this in the word
+// if in letter and in that word
 
 // STEP 1) computer chooses our random color to play
 var color = allColors[Math.floor(Math.random() * allColors.length)];
