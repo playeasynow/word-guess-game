@@ -24,32 +24,80 @@ var allColors = [
 // var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 // var alphabet = alphabetArray();
 
-// variables
+// GLOBAL VARIABLES
 var wins = 0;
 var losses = 0;
 var inputText = document.getElementById("inputText"); // letters the user enters
-var winsText = document.getElementById("wins-text"); // the number of times a user answers a whole color correctly
-var lossesText = document.getElementById("losses-text"); // number of times the user has lost, ran out of guesses
-var guessesRemaining = document.getElementById("guesses-remaining"); // number of single-letter guesses remaining, always 10
-var lettersGuessed = document.getElementById("letters-guessed"); // listing of letters user entered but not part of word, already used
+var guessBtn = document.getElementById("guessBtn"); // button that needs to be clicked in order for letter to be taken
+// var winsText = document.getElementById("wins-text"); // the number of times a user answers a whole color correctly
+// var lossesText = document.getElementById("losses-text"); // number of times the user has lost, ran out of guesses
+// var guessesRemaining = document.getElementById("guesses-remaining"); // number of single-letter guesses remaining, always 10
+// var wrongLetters = document.getElementById("letters-guessed"); // listing of letters user entered but not part of word, already used
 var currentWord = document.getElementById("current-word");
+var answerArray = [];
+var wrongArray = [];
+var lettersRemaining;
 
-// is this in the word
-// if in letter and in that word
+// GAME START CONFIG
 
 // STEP 1) computer chooses our random color to play
 var color = allColors[Math.floor(Math.random() * allColors.length)];
-console.log(color);
 
 // STEP 2) display underscores for the color to be played/guessed
-var answerArray = [];
-for (var i = 0; i < color.length; i++) {
-    answerArray[color.length] = "_ ";
-    console.log(answerArray[color.length]);
+var generateUnderscore = () => {
+    for (var i = 0; i < color.length; i++) {
+        answerArray.push("_");
+    }
+    return answerArray;
 }
-var remainingLetters = color.length;
 
-console.log(answerArray.join(" "));
+// GAME PLAY CONFIG
+
+// STEP 1) user enters letter into form
+// document.getElementById("guessBtn").onclick = function () {
+//     var guess = document.getElementById("inputText").value;
+//     console.log("guess " + guess);
+// }
+
+function clickBtn() {
+    event.preventDefault();
+    event.stopPropagation();
+    var guess = document.getElementById("inputText").value;
+    console.log(guess);
+}
+
+// STEP 2) determine if letter is in color chosen from array
+
+// STEP 3) IF letter in word, then join and show it on the blank spaces
+
+// STEP 4) IF letter not in word, then don't join, and show it on the letters guessed incorrectly list; continue if there are remaining guesses
+
+
+
+// GAME END / RESTART CONFIG
+
+// STEP 1) IF all letters are guessed, the user wins, and the game restarts with a new word
+
+// STEP 2) IF all guesses are used, the user loses, and game restarts with a new word
+
+
+
+
+
+// lettersRemaining = color.length;
+
+// while (lettersRemaining > 0) {
+//     answerArray.join(" ");
+//     document.getElementById("current-word").innerHTML = lettersRemaining;
+// }
+
+// document.getElementById("current-word").innerHTML = lettersRemaining;
+// console.log(answerArray);
+
+
+
+// is this in the word
+// if in letter and in that word
 
 // This function is run whenever the user presses the guess button after entering a letter.
 // document.getElementById("guessBtn").onclick = function (event) {
