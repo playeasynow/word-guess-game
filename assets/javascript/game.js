@@ -36,35 +36,68 @@ var guessBtn = document.getElementById("guessBtn"); // button that needs to be c
 var currentWord = document.getElementById("current-word");
 var answerArray = [];
 var wrongArray = [];
-var lettersRemaining;
 
 // GAME START CONFIG
 
 // STEP 1) computer chooses our random color to play
 var color = allColors[Math.floor(Math.random() * allColors.length)];
-
+console.log(color);
 // STEP 2) display underscores for the color to be played/guessed
-var generateUnderscore = () => {
-    for (var i = 0; i < color.length; i++) {
-        answerArray.push("_");
-    }
-    return answerArray;
+for (var i = 0; i < color.length; i++) {
+    answerArray[i] = "_";
 }
 
 // GAME PLAY CONFIG
-
-// STEP 1) user enters letter into form
-// document.getElementById("guessBtn").onclick = function () {
-//     var guess = document.getElementById("inputText").value;
-//     console.log("guess " + guess);
-// }
+var lettersRemaining = color.length;
 
 function clickBtn() {
     event.preventDefault();
     event.stopPropagation();
     var guess = document.getElementById("inputText").value;
     console.log(guess);
+    answerArray.push(guess);
+    console.log(answerArray);
+//     if (guess === null) {
+//         break;
+//     } else {
+//         for (var j = 0; j < color.length; j++) {
+//             if (color[j] === guess) {
+//                 answerArray[j] = guess;
+//                 letterRemaining--;
+//             }
+//         }
+//     }
 }
+
+document.write(answerArray.join(" "));
+
+// while (lettersRemaining > 0) {
+//     function clickBtn() {
+//         event.preventDefault();
+//         event.stopPropagation();
+//         var guess = document.getElementById("inputText").value;
+//         if (guess === null) {
+//             break;
+//         } else {
+//             for (var j = 0; j < color.length; j++) {
+//                 if (color[j] === guess) {
+//                     answerArray[j] = guess;
+//                     letterRemaining--;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// function clickBtn() {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     var guess = document.getElementById("inputText").value;
+//     console.log(guess);
+    // IF letter is in the COLOR, then display in the underscore area, keep looping until no letters left && guesses remain
+    // IF letter is not in the COLOR, then display in the wrong letters area, guesses--
+    // IF run out of guesses, startover
+// }
 
 // STEP 2) determine if letter is in color chosen from array
 
