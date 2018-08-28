@@ -1,8 +1,4 @@
-// fun little welcome message
-// var name = prompt("Hi, colorful. What's your name?");
-// alert("Hello " + name);
-
-// all the colors array, should be 140
+// all the colors array, 140 items
 var allColors = [
     "indianred", "lightcoral", "salmon", "darksalmon", "lightsalmon", "crimson",
     "red", "firebrick", "darkred", "pink", "lightpink", "hotpink", "deeppink", "mediumvioletred",
@@ -20,9 +16,6 @@ var allColors = [
     "whitesmoke", "seashell", "beige", "oldlace", "floralwhite", "ivory", "antiquewhite", "linen", "lavenderblush", "mistyrose", "gainsboro", "lightgray",
     "silver", "darkgray", "gray", "dimgray", "lightslategray", "slategray", "darkslategray", "black"
 ];
-
-// var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-// var alphabet = alphabetArray();
 
 // GLOBAL VARIABLES
 var wins = 0;
@@ -42,6 +35,7 @@ var wrongArray = [];
 // STEP 1) computer chooses our random color to play
 var color = allColors[Math.floor(Math.random() * allColors.length)];
 console.log(color);
+
 // STEP 2) display underscores for the color to be played/guessed
 for (var i = 0; i < color.length; i++) {
     answerArray[i] = "_";
@@ -54,9 +48,17 @@ function clickBtn() {
     event.preventDefault();
     event.stopPropagation();
     var guess = document.getElementById("inputText").value;
-    console.log(guess);
-    answerArray.push(guess);
-    console.log(answerArray);
+    for (var j = 0; j < color.length; j++) {
+        if (color[j] === guess) {
+            answerArray[j] = guess;
+            lettersRemaining--;
+            console.log(guess);
+            console.log(answerArray);
+        }
+    }
+}
+
+
 //     if (guess === null) {
 //         break;
 //     } else {
@@ -67,7 +69,6 @@ function clickBtn() {
 //             }
 //         }
 //     }
-}
 
 document.write(answerArray.join(" "));
 
