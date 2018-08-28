@@ -20,12 +20,13 @@ var allColors = [
 // GLOBAL VARIABLES
 var wins = 0;
 var losses = 0;
+var guesses = 10;
 var inputText = document.getElementById("input-text"); // letters the user enters
 var guessBtn = document.getElementById("guess-btn"); // button that needs to be clicked in order for letter to be taken
 var winsText = document.getElementById("wins-text"); // the number of times a user answers a whole color correctly
 // var lossesText = document.getElementById("losses-text"); // number of times the user has lost, ran out of guesses
 // var guessesLeft = document.getElementById("guesses-left"); // number of single-letter guesses remaining, always 10
-// var wrongLetters = document.getElementById("letters-guessed"); // listing of letters user entered but not part of word, already used
+var wrongLetters = document.getElementById("wrong-letters"); // listing of letters user entered but not part of word, already used
 var currentWord = document.getElementById("current-word");
 var unansweredArray = [];
 var answeredArray = [];
@@ -53,23 +54,43 @@ function clickBtn() {
     var guess = document.getElementById("input-text").value;
     var currentWord = document.getElementById("current-word");
     var winsText = document.getElementById("wins-text");
-    for (var j = 0; j < color.length; j++) {
-        if (color[j] === guess && lettersRemaining > 0) {
-            answeredArray[j] = guess;
-            lettersRemaining--;
-         } else if (color[j] === guess && lettersRemaining < 1) {
-            answeredArray[j] = guess;
-            wins++;
-            lettersRemaining;
-        //  } else if (lettersRemaining > 0) {
-        //      wrongArray[j] = guess;
-        //      wrongLetters++
-         }
-    } 
-    currentWord.textContent = answeredArray.join(" ");
+    var wrongLetters = document.getElementById("wrong-letters");
+    if (lettersRemaining > 0 && guesses > 0) {
+        for (var j = 0; j < color.length; j++) {
+            if (color[j] === guess) {
+                answeredArray[j] = guess;
+                lettersRemaining--;
+                console.log(lettersRemaining);
+            } else if (color[j] !== guess) {
+                wrongArray[guess];
+                console.log(wrongArray);
+                guesses--;
+                console.log(guesses);
+                }
+        }
+        currentWord.textContent = answeredArray.join(" ");
+        wrongLetters.textContent = wrongArray;
+    } else {
+        answeredArray[j] = guess;
+        wins++;
+    }
     winsText.textContent = wins;
-}
+};
 
+    // while (remainingLetters > 0) {
+    //  if (guess.length !== 1) {
+    //         alert("Please enter a single letter.");
+    //     } else {
+    //         // Update the game state with the guess
+    //         for (var j = 0; j < word.length; j++) {
+    //             if (word[j] === guess) {
+    //                 answerArray[j] = guess;
+    //                 remainingLetters--;
+    //             }
+    //         }
+    //     }
+        // The end of the game loop
+    // }
 
 //     if (guess === null) {
 //         break;
