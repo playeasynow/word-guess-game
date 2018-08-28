@@ -12,3 +12,9 @@ body {
     font-style: italic;
     font-family: 'Lobster';
 }
+
+#current-word {
+    font-size: 20px;
+    color: rebeccapurple;
+    font-weight: bold;
+}
