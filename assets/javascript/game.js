@@ -20,62 +20,163 @@ var allColors = [
 // GLOBAL VARIABLES
 var wins = 0;
 var losses = 0;
-var guesses = 10;
-var inputText = document.getElementById("input-text"); // letters the user enters
-var guessBtn = document.getElementById("guess-btn"); // button that needs to be clicked in order for letter to be taken
-var winsText = document.getElementById("wins-text"); // the number of times a user answers a whole color correctly
-// var lossesText = document.getElementById("losses-text"); // number of times the user has lost, ran out of guesses
-// var guessesLeft = document.getElementById("guesses-left"); // number of single-letter guesses remaining, always 10
-var wrongLetters = document.getElementById("wrong-letters"); // listing of letters user entered but not part of word, already used
-var currentWord = document.getElementById("current-word");
+var guessesLeft = 10;
 var unansweredArray = [];
 var answeredArray = [];
-var wrongArray = [];
+var guessedLetters = [];
 var wrongGuess;
 
 // GAME START CONFIG
 
 // STEP 1) computer chooses our random color to play
-var color = allColors[Math.floor(Math.random() * allColors.length)];
-console.log(color);
+var computerGuess = allColors[Math.floor(Math.random() * allColors.length)];
+console.log(computerGuess);
 
-// STEP 2) display underscores for the color to be played/guessed
-for (var i = 0; i < color.length; i++) {
-    unansweredArray[i] = "_";
-    answeredArray[i] = "_";
+// // STEP 2) display underscores for the color to be played/guessed
+// for (var i = 0; i < computerGuess.length; i++) {
+//     // unansweredArray[i] = "_";
+//     answeredArray[i] = "_";
+//     console.log(answeredArray);
+// }
+
+// function showUnderscores() {
+//     for (var i = 0; i < computerGuess.length; i++) {
+//         answeredArray[i] = "_";
+//     }
+// }
+
+function insertCorrectLetter() {
+
 }
 
-// GAME PLAY CONFIG
-var lettersRemaining = color.length;
-
-function clickBtn() {
-    event.preventDefault();
-    event.stopPropagation();
-    var guess = document.getElementById("input-text").value;
-    var currentWord = document.getElementById("current-word");
-    var winsText = document.getElementById("wins-text");
-    var wrongLetters = document.getElementById("wrong-letters");
-    if (lettersRemaining > 0 && guesses > 0) {
-        for (var j = 0; j < color.length; j++) {
-            if (color[j] === guess) {
-                answeredArray[j] = guess;
-                lettersRemaining--;
-                console.log(lettersRemaining);
-            } else if (color[j] !== guess) {
-                wrongArray[guess];
-                console.log(wrongArray);
-                guesses--;
-                console.log(guesses);
-                }
-        }
-        currentWord.textContent = answeredArray.join(" ");
-        wrongLetters.textContent = wrongArray;
-    } else {
-        answeredArray[j] = guess;
-        wins++;
-    }
-    winsText.textContent = wins;
+function updateGuessesLeft() {
+    // guessesLeft will get displayed in HTML
+    document.querySelector("#guesses-left").innerHTML = guessesLeft;
 };
+
+function updateColor() {
+    // updateColor will update the color the computer has chosen after guesses run out / user wins
+    this.color = this.allColors[Math.floor(Math.random() * this.allColors.length)];
+};
+
+function updateCurrentGuesses() {
+    // guesses the user has tried -- then display it as letters joined with the underscores
+    document.querySelector("#current-guess").innerHTML = answeredArray.join(" ");
+};
+
+function updateWins() {
+    // wins-text will get displayed in HTML
+    document.querySelector('#wins-text').innerHTML = wins;
+};
+
+function updateLosses() {
+    // losses-text will get displayed in HTML
+    document.querySelector('#losses-text').innerHTML = losses;
+};
+
+function changeBackgroundColor() {
+    // hides instructions box
+    // TBD
+};
+
+// will reset variables / array to set values, as well as run the functions listed
+function reset() {
+    guessesLeft = 10;
+    answeredArray = [];
+
+    updateColor();
+    updateGuessesLeft();
+    updateCurrentGuesses();
+}
+
+// when key is pressed/released it becomes the user's guess
+document.onkeyup = function (event) {
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log(userGuess);
+    var check = computerGuess.includes(userGuess);
+    // display wins / losses and hide instructions throughout the game
+    updateWins();
+    updateLosses();
+    // showUnderscores();
+    // changeBackgroundColor();
+
+    // if (check === false) {
+    //     alert("Make sure to use only letters!");
+    //     return false;
+    // } else 
+    if (check === true) {
+        for (var j = 0; j < computerGuess.length; j++) {
+            if (userGuess === computerGuess[j]) {
+                // if the user's choice was in the alphabet then update guesses left and add user's guess to the array of guessed letters
+                answeredArray.push(userGuess);
+                guessesLeft--;
+                // update the scoreboard
+                updateGuessesLeft();
+            }
+            updateCurrentGuesses();
+        }
+    }
+}
+//         if (guessesLeft > 0) {
+//             // if the user's guess is the randomly chosen letter, win
+//             for (var j = 0; j < color.length; j++) {
+//                 if (userGuess === color[j]) {
+//                     wins++;
+//                     answeredArray.push(userGuess);
+//                     document.querySelector('#wins-text').innerHTML = wins;
+//                     userGuess = userGuess.toUpperCase();
+//                     alert("Yes, you are psychic! The chosen letter was " + userGuess);
+//                     //  call to reset the guesses left and the guesses so far i.e. restart the game
+//                     reset();
+//             }
+//         } else if (guessesLeft === 0) {
+//             // user will lose and we'll update the html to display the loss 
+//             losses++;
+//             document.querySelector('#losses-text').innerHTML = "Losses: " + losses;
+//             alert("Sorry!! Not a psychic yet. Keep trying!");
+//             // call to reset the guesses left and the guesses so far i.e. restart the game
+//             reset();
+//         }
+//         return false;
+//     } else {
+//         // this hasn't appeared, but should not... which is why it's weird
+//         alert("this is weird.");
+//     }
+
+// };
+
+
+// // GAME PLAY CONFIG
+// var lettersRemaining = color.length;
+
+// function clickBtn() {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     var guess = document.getElementById("input-text").value;
+//     var currentWord = document.getElementById("current-word");
+//     var winsText = document.getElementById("wins-text");
+//     var wrongLetters = document.getElementById("wrong-letters");
+//     if (lettersRemaining > 0 && guesses > 0) {
+//         for (var j = 0; j < color.length; j++) {
+//             if (color[j] === guess) {
+//                 answeredArray[j] = guess;
+//                 lettersRemaining--;
+//                 console.log(lettersRemaining);
+//             } else if (color[j] !== guess) {
+//                 wrongArray[guess];
+//                 console.log(wrongArray);
+//                 guesses--;
+//                 console.log(guesses);
+//                 }
+//         }
+//         currentWord.textContent = answeredArray.join(" ");
+//         wrongLetters.textContent = wrongArray;
+//     } else {
+//         answeredArray[j] = guess;
+//         wins++;
+//     }
+//     winsText.textContent = wins;
+// };
 
     // while (remainingLetters > 0) {
     //  if (guess.length !== 1) {
