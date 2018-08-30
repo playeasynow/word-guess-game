@@ -21,43 +21,34 @@ var allColors = [
 var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
-var unansweredArray = [];
 var answeredArray = [];
 var guessedLetters = [];
 var wrongGuess;
+// var color = null;
 
-// GAME START CONFIG
+// computer chooses our random color to play
+// function updateColor() {
+var color = allColors[Math.floor(Math.random() * allColors.length)];
+console.log(color);
+// };
 
-// STEP 1) computer chooses our random color to play
-var computerGuess = allColors[Math.floor(Math.random() * allColors.length)];
-console.log(computerGuess);
+// updateColor();
 
-// // STEP 2) display underscores for the color to be played/guessed
-// for (var i = 0; i < computerGuess.length; i++) {
-//     // unansweredArray[i] = "_";
-//     answeredArray[i] = "_";
-//     console.log(answeredArray);
-// }
-
-// function showUnderscores() {
-//     for (var i = 0; i < computerGuess.length; i++) {
-//         answeredArray[i] = "_";
-//     }
-// }
-
-function insertCorrectLetter() {
-
+function showUnderscores() {
+    for (var i = 0; i < color.length; i++) {
+        answeredArray[i] = "_";
+        // document.querySelector("#current-guess").innerHTML = answeredArray;
+    }
+    return answeredArray;
 }
 
-function updateGuessesLeft() {
-    // guessesLeft will get displayed in HTML
-    document.querySelector("#guesses-left").innerHTML = guessesLeft;
-};
+showUnderscores();
 
-function updateColor() {
-    // updateColor will update the color the computer has chosen after guesses run out / user wins
-    this.color = this.allColors[Math.floor(Math.random() * this.allColors.length)];
-};
+// function updateColor() {
+//     // updateColor will update the color the computer has chosen after guesses run out / user wins
+//     this.color = this.allColors[Math.floor(Math.random() * this.allColors.length)];
+//     console.log(color);
+// };
 
 function updateCurrentGuesses() {
     // guesses the user has tried -- then display it as letters joined with the underscores
@@ -74,6 +65,16 @@ function updateLosses() {
     document.querySelector('#losses-text').innerHTML = losses;
 };
 
+function updateGuessesLeft() {
+    // guessesLeft will get displayed in HTML
+    document.querySelector("#guesses-left").innerHTML = guessesLeft;
+};
+
+function updateGuessesSoFar() {
+    // Here we take the guesses the user has tried -- then display it as letters separated by commas. 
+    document.querySelector('#guessed-letters').innerHTML = guessedLetters.join(', ');
+};
+
 function changeBackgroundColor() {
     // hides instructions box
     // TBD
@@ -83,37 +84,40 @@ function changeBackgroundColor() {
 function reset() {
     guessesLeft = 10;
     answeredArray = [];
-
     updateColor();
     updateGuessesLeft();
     updateCurrentGuesses();
 }
 
+// updateColor();
+
 // when key is pressed/released it becomes the user's guess
 document.onkeyup = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     console.log(userGuess);
-    var check = computerGuess.includes(userGuess);
+    var check = color.includes(userGuess);
     // display wins / losses and hide instructions throughout the game
     updateWins();
     updateLosses();
-    // showUnderscores();
-    // changeBackgroundColor();
+    updateGuessesLeft();
 
-    // if (check === false) {
-    //     alert("Make sure to use only letters!");
-    //     return false;
-    // } else 
     if (check === true) {
-        for (var j = 0; j < computerGuess.length; j++) {
-            if (userGuess === computerGuess[j]) {
-                // if the user's choice was in the alphabet then update guesses left and add user's guess to the array of guessed letters
-                answeredArray.push(userGuess);
-                guessesLeft--;
-                // update the scoreboard
-                updateGuessesLeft();
+        guessesLeft--;
+        guessedLetters.push(userGuess);
+        updateGuessesSoFar();
+
+        if (guessesLeft > 0) {
+            for (var j = 0; j < color.length; j++) {
+                if (userGuess === color[j]) {
+                    answeredArray[j] = userGuess;
+                    // console.log(j);
+                    // answeredArray.push(userGuess);
+                    updateCurrentGuesses();
+                    // update the scoreboard
+                    // updateCurrentGuesses();
+                    wins++
+                }
             }
-            updateCurrentGuesses();
         }
     }
 }
