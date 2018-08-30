@@ -32,51 +32,56 @@ var newColor;
 var color = allColors[Math.floor(Math.random() * allColors.length)];
 console.log(color);
 
+// will determine wins / loss
 var lettersRemaining = color.length;
 
 // add underscores to array
 for (var i = 0; i < color.length; i++) {
     answeredArray[i] = "_";
-}
+};
 
+// add underscores to array for reset
 function showUnderscores() {
     for (var i = 0; i < color.length; i++) {
         answeredArray[i] = "_";
     }
-}
+};
 
+// will call function to show underscores on first go
+showUnderscores();
+
+// updates color on reset
 function updateColor() {
-    // updateColor will update the color the computer has chosen after guesses run out / user wins
     color = allColors[Math.floor(Math.random() * allColors.length)];
     console.log(color);
 };
 
+// updates array on html
 function updateRightGuesses() {
-    // guesses the user has tried -- then display it as letters joined with the underscores
     document.querySelector("#current-guess").innerHTML = answeredArray.join(" ");
 };
 
+// updates wrong letters on html
 function updateWrongGuesses() {
-    // guesses the user has tried -- then display it as letters joined with the underscores
     document.querySelector("#guessed-letters").innerHTML = guessedLetters.join("  ");
 };
 
+// updates wins on html
 function updateWins() {
-    // wins-text will get displayed in HTML
     document.querySelector('#wins-text').innerHTML = wins;
 };
 
+// updates losses on html
 function updateLosses() {
-    // losses-text will get displayed in HTML
     document.querySelector('#losses-text').innerHTML = losses;
 };
 
+// updates guesses left on html
 function updateGuessesLeft() {
-    // guessesLeft will get displayed in HTML
     document.querySelector("#guesses-left").innerHTML = guessesLeft;
 };
 
-
+// will change the background color...
 function changeBackgroundColor() {
     // hides instructions box
     // TBD
@@ -95,26 +100,19 @@ function reset() {
     updateWrongGuesses();
 }
 
-showUnderscores();
-
-// when key is pressed/released it becomes the user's guess
+// game logic based on keyup event
 document.onkeyup = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(userGuess);
     var checkAlphabet = alphabet.includes(userGuess);
     var checkColor = color.includes(userGuess);
-    // display wins / losses and hide instructions throughout the game
+    // update scoreboard throughout the game
     updateWins();
     updateLosses();
     updateGuessesLeft();
     updateRightGuesses();
     updateWrongGuesses();
 
-    if (checkAlphabet === false) {
-        // alert("Only guess letters in this game! ;)");
-        return false;
-
-    } else if (checkAlphabet === true) {
+    if (checkAlphabet === true) {
         // update background color function
         if (guessesLeft > 0) {
             for (var j = 0; j < color.length; j++) {
