@@ -28,6 +28,8 @@ var losses = 0;
 var guessesLeft = 9;
 var answeredArray = [];
 var guessedLetters = [];
+var yay = new Audio("./sounds/rupaul.mp3");
+var boo = new Audio("./sounds/applepay.mp3");
 
 // // generate random color to guess
 var color = allColors[Math.floor(Math.random() * allColors.length)];
@@ -131,10 +133,12 @@ document.onkeyup = function (event) {
             }
             if (lettersRemaining < 1) {
                 wins++;
+                yay.play();
                 updateWins();
                 reset();
             }
         } else {
+            boo.play();
             losses++;
             updateLosses();
             reset();
