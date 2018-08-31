@@ -17,7 +17,7 @@
     <!-- bootstrap main container -->
     <div class="container pb-4 mainBox" id="mainBox">
         <div class="row">
-            <div class="col-8">
+            <div class="col-9">
                 <!-- main title / Guess Hue? -->
                 <h1 class="big bold"> <span class="grad1">Guess Hue?</span></h1>
                 <p class="lead" id="directions-text">It's hangman, and the category is HTML / CSS named colors. Yes, all
@@ -25,40 +25,35 @@
                 </p>
             </div>
 
-            <div class="col-4">
+            <div class="col-3">
                 <!-- game dashboard -->
                 <h2 class="small bold"><span class="grad1">Score</span></h2>
                 <span id="wins-text"> </span>
-                ...words guessed!
+                <span id="wins-desc">...words guessed!</span>
                 <br>
                 <span id="guesses-left"> </span>
-                ...guesses left
+                <span id="guesses-desc">...guesses left</span>
                 <br>
                 <span id="losses-text"> </span>
-                ...losses
+                <span id="losses-desc">...losses</span>
                 <br>
 
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-4">
+            <div class="col-9">
                 <!-- the current word the user is playing / appears with underscores-->
-                <p id="current-guess"> </p>
-            </div>
-            <div class="col-4">
-            </div>
-
-            <div class="col-4">
+                <p id="current-guess" class="grad1"> </p>
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-8">
+            <div class="col-9">
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <!-- incorrectly guessed letters -->
-                incorrect letters:
+                <span id="incorrect-desc">incorrect letters:</span>
                 <p id="guessed-letters"> </p>
             </div>
         </div>

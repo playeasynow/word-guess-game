@@ -5,6 +5,7 @@
     color: white;
     padding: 30px;
     border-radius: 5px 100px 5px 100px;
+    width: 60%;
 }
 
 .bold {
@@ -36,4 +37,12 @@
 
 .small {
     font-size: 2vw;
+}
+
+#directions-text, 
+#wins-desc, 
+#guesses-desc, 
+#losses-desc,
+#incorrect-desc {
+    font-size: 1vw;
 }
