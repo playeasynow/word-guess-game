@@ -14,10 +14,10 @@
     font-family: 'Lobster';
 }
 
-#current-word {
-    font-size: 20px;
-    color: rebeccapurple;
+#current-guess {
+    font-size: 4vw;
     font-weight: bold;
+    margin-left: 10px;
 }
 
 .grad1 {
